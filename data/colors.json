@@ -1,0 +1,354 @@
+{
+    "colors": [
+        {
+            "name": "neutral-light-1",
+            "hex": "#f7ebe2",
+            "sun_resistance": 0
+        },
+        {
+            "name": "neutral-light-2",
+            "hex": "#e9d2c2",
+            "sun_resistance": 0.1
+        },
+        {
+            "name": "neutral-light-3",
+            "hex": "#d8bba5",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "neutral-light-4",
+            "hex": "#c29d82",
+            "sun_resistance": 0.3
+        },
+        {
+            "name": "neutral-light-5",
+            "hex": "#a97f60",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "neutral-dark-1",
+            "hex": "#875d3d",
+            "sun_resistance": 0.5
+        },
+        {
+            "name": "neutral-dark-2",
+            "hex": "#623c20",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "neutral-dark-3",
+            "hex": "#442610",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "neutral-dark-4",
+            "hex": "#2e1706",
+            "sun_resistance": 0.8
+        },
+        {
+            "name": "neutral-dark-5",
+            "hex": "#1a0c02",
+            "sun_resistance": 0.9
+        },
+        {
+            "name": "cold-light-1",
+            "hex": "#e6eeff",
+            "sun_resistance": 0
+        },
+        {
+            "name": "cold-light-2",
+            "hex": "#d9d4e0",
+            "sun_resistance": 0.1
+        },
+        {
+            "name": "cold-light-3",
+            "hex": "#c9bdbe",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "cold-light-4",
+            "hex": "#b59f96",
+            "sun_resistance": 0.3
+        },
+        {
+            "name": "cold-light-5",
+            "hex": "#9d8070",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "cold-dark-1",
+            "hex": "#7e5e48",
+            "sun_resistance": 0.5
+        },
+        {
+            "name": "cold-dark-2",
+            "hex": "#5b3d27",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "cold-dark-3",
+            "hex": "#3f2714",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "cold-dark-4",
+            "hex": "#2a1708",
+            "sun_resistance": 0.8
+        },
+        {
+            "name": "cold-dark-5",
+            "hex": "#170c03",
+            "sun_resistance": 0.9
+        },
+        {
+            "name": "warm-light-1",
+            "hex": "#ffe9b7",
+            "sun_resistance": 0
+        },
+        {
+            "name": "warm-light-2",
+            "hex": "#ffd09d",
+            "sun_resistance": 0.1
+        },
+        {
+            "name": "warm-light-3",
+            "hex": "#f2b985",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "warm-light-4",
+            "hex": "#da9b68",
+            "sun_resistance": 0.3
+        },
+        {
+            "name": "warm-light-5",
+            "hex": "#be7d4c",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "warm-dark-1",
+            "hex": "#985d2f",
+            "sun_resistance": 0.5
+        },
+        {
+            "name": "warm-dark-2",
+            "hex": "#6f3c18",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "warm-dark-3",
+            "hex": "#4d260a",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "warm-dark-4",
+            "hex": "#351704",
+            "sun_resistance": 0.8
+        },
+        {
+            "name": "warm-dark-5",
+            "hex": "#1e0c02",
+            "sun_resistance": 0.9
+        },
+        {
+            "name": "red-1",
+            "hex": "#f04d4d",
+            "sun_resistance": 0.3
+        },
+        {
+            "name": "red-2",
+            "hex": "#ba2525",
+            "sun_resistance": 0.5
+        },
+        {
+            "name": "red-3",
+            "hex": "#5e1111",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "red-4",
+            "hex": "#360606",
+            "sun_resistance": 0.8
+        },
+        {
+            "name": "blue-1",
+            "hex": "#609ee6",
+            "sun_resistance": 0.3
+        },
+        {
+            "name": "blue-2",
+            "hex": "#3452ad",
+            "sun_resistance": 0.5
+        },
+        {
+            "name": "blue-3",
+            "hex": "#1b306e",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "blue-4",
+            "hex": "#0c1036",
+            "sun_resistance": 0.8
+        },
+        {
+            "name": "yellow-1",
+            "hex": "#e3c45d",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "yellow-2",
+            "hex": "#b89a39",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "yellow-3",
+            "hex": "#7d671e",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "yellow-4",
+            "hex": "#3d320b",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "green-1",
+            "hex": "#58e065",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "green-2",
+            "hex": "#33ab3f",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "green-3",
+            "hex": "#1c7024",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "green-4",
+            "hex": "#092e0c",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "orange-1",
+            "hex": "#fa7523",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "orange-2",
+            "hex": "#e35c09",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "orange-3",
+            "hex": "#b34807",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "orange-4",
+            "hex": "#873604",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "violet-1",
+            "hex": "#a671de",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "violet-2",
+            "hex": "#753ba8",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "violet-3",
+            "hex": "#562680",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "violet-4",
+            "hex": "#2d0e47",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "pink-1",
+            "hex": "#f257d8",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "pink-2",
+            "hex": "#c73aaf",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "pink-3",
+            "hex": "#871c75",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "pink-4",
+            "hex": "#520d46",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "turquoise-1",
+            "hex": "#54f0b9",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "turquoise-2",
+            "hex": "#36c77d",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "turquoise-3",
+            "hex": "#1b8f78",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "turquoise-4",
+            "hex": "#0d5444",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "gold",
+            "hex": "#fcce14",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "sky",
+            "hex": "#00fffb",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "leaf",
+            "hex": "#4dff00",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "blood",
+            "hex": "#ff0000",
+            "sun_resistance": 0.7
+        },
+        {
+            "name": "ocean",
+            "hex": "#0011ff",
+            "sun_resistance": 0.2
+        },
+        {
+            "name": "magenta",
+            "hex": "#ff0077",
+            "sun_resistance": 0.4
+        },
+        {
+            "name": "white",
+            "hex": "#f0eee9",
+            "sun_resistance": 0.6
+        },
+        {
+            "name": "black",
+            "hex": "#0d0900",
+            "sun_resistance": 0.7
+        }
+    ]
+}
