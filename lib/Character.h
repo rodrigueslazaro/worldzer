@@ -1,7 +1,9 @@
 #pragma once
+#include <string>
+#include "rapidjson/document.h"
+using namespace std;
 
-
-typedef enum {
+enum alignment {
     lawful_good,
     lawful_neutral,
     lawful_evil,
@@ -11,91 +13,115 @@ typedef enum {
     chaotic_good,
     chaotic_neutral,
     chaotic_evil
-} alignment;
+};
 
-typedef enum {
+enum sex {
     male,
     female
-} sex;
+};
 
-typedef struct {
+struct bone_structure {
     int build;
     bool nanism;
     bool lost_limb;
     string disability;
-} bone_structure;
+};
 
-typedef struct {
+struct hair {
     string color;
     int fur;
     string texture;
     bool alopecia;
-} hair;
+};
 
-typedef struct {
+struct skin {
     string color;
     bool vitiligo;
-} skin;
+};
 
-typedef struct {
-    sex sex;
-    bone_structure structure;
+struct body {
+    enum sex sex;
+    struct bone_structure structure;
     int height;
-    skin skin;
-    hair hair;
-} body;
+    struct skin skin;
+    struct hair hair;
+};
 
-typedef struct {
+struct jaw{
     int width;
     int definition;
-} jaw;
+};
 
-typedef struct {
+struct nose{
     int width;
     int length;
     int bridge;
-} nose;
+};
 
-typedef struct {
+struct chin{
     int width;
     int forward;
-} chin;
+};
 
-typedef struct {
+struct eyes{
     bool heterochromia;
     string left;
     string right;
     int size;
     int monolid;
-} eyes;
+};
 
-typedef struct {
-    jaw jaw;
-    chin chin;
-    eyes eyes;
-    nose nose;
+struct face{
+    struct jaw jaw;
+    struct chin chin;
+    struct eyes eyes;
+    struct nose nose;
     int width;
     int height;
     int lips;
     int brow_forward;
     int cheeckbone_height;
-} face;
+};
 
-typedef struct {
+struct calendar_date{
+    int year;
+    int month;
+    int day;
+    int age;
+};
+
+struct age {
     int num;
-    time_point birth;
-    time_point death;
-} age;
+    struct calendar_date birth;
+    struct calendar_date death;
+};
 
 class Character {
 public:
-    Character Character();
+    Character(string spc = "", string eth = "", string cul = "", string sub = "");
+    void getDBs();
+    void setSpecies(string spc) {species = spc;};
+    void setEthnicity(string eth) {species = eth;};
+    void setCulture(string cul) {species = cul;};
+    void setSubculture(string sub) {species = sub;};
+    string getSpecies() {return species;};
+    string getEthnicity() {return ethnicity;};
+    string getCulture() {return culture;};
+    string getSubculture() {return subculture;};
 private:
+    rapidjson::Document speciesdb;
+    rapidjson::Document ethnicitiesdb;
+    rapidjson::Document culturesdb;
+    rapidjson::Document subculturesdb;
+    void setRandSpecies();
+    void setRandEthnicity();
+    void setRandCulture();
+    void setRandSubculture();
     string species;
-    strig ethnicity;
+    string ethnicity;
     string culture;
     string subculture;
-    body body;
-    face face;
-    age age;
+    struct body body;
+    struct face face;
+    struct age age;
 };

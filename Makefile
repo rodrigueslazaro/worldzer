@@ -1,5 +1,5 @@
 build:
-	g++ -Wall ./src/*.c -o worldzer
+	g++ -Wall ./src/*.cpp -Ilib -o worldzer
 run:
 	./worldzer
 clean:

@@ -1,0 +1,23 @@
+name,species,height,skin-color,eyes-color,monolid,hair-textures,hair-colors,chin-width,chin-forward,jaw-definition,jaw-width,cheeck-height,eye-size,face-width,face-height,lips,nose-length,nose-bridge,nose-width,brow-forward,body-hair,bone-structure,disease-resistance
+malkani,human,160-180,neutral-light,"brown,amber,hazel,blue,green,gray",0,"2,3","G,H,I,K,L,M,N,O,P,Q,R,S,T,U",4,5,9,9,7,7,3,6,4,4,4,4,4,4,4,flu
+karemni,human,160-175,cold-dark,"hazel,green,amber,brown,blue,gray",0,"1,2","P,Q,R,S,T,U,V,X,W,Y",4,4,9,9,4,6,4,6,7,6,6,5,4,3,3,fang disease
+almani,human,170-190,warm-light,"amber,hazel,brown,green,blue,gray",0,2,"G,H,I,K,L,M,N,O,P,Q,R,S",3,4,8,8,4,5,3,6,5,7,4,5,4,7,5,flea fever
+parani,human,150-165,neutral-light,"brown,amber,hazel,green,blue,gray",0,3,"F,G,H,I,K,L,M,N,O",5,5,7,7,6,5,4,6,5,6,5,5,5,4,6,storm fever
+qatani,human,165-180,cold-light,"blue,gray,green,hazel,amber,brown",1,"2,3","A,B,C,D,E,F,G,H,I,K,L,M,N,O,1,2,3,4,5,6",6,4,7,7,6,5,4,6,4,5,4,5,6,8,8,the eyes
+okalani,human,160-180,cold-light,"hazel,blue,green,gray,amber,brown",1,"2,3","M,N,O,P,Q,R,S,T",3,4,7,7,8,4,5,6,5,6,5,6,5,4,4,mist buboes
+falani,human,175-190,neutral-light,"amber,brown,hazel,green,blue,gray",0,"3,4","O,P,Q,R,S,T,U,V,W",2,3,5,4,5,2,3,5,3,7,4,4,4,1,4,spider fever
+torieni,human,170-190,warm-light,"brown,amber,hazel,blue,green,gray",2,1,"H,I,K,L,M,N,O,P,R,S,T,U,V,W,X,Y",2,7,5,4,4,3,3,7,4,4,6,4,5,0,6,silk disease
+marithian,human,180-200,warm-dark,"brown,amber,hazel,blue,green,gray",0,"3,4","S,T,U,V,W,X,Y",6,5,9,9,4,4,6,7,8,5,4,8,7,4,8,sand fever
+mother dwarfs,dwarf,100-140,"neutral-light,orange","amber,hazel,green",0,"1,2","I,K,L,M,N,O,P",7,5,8,9,6,4,3,5,6,6,8,7,8,9,8,yellow eyes
+snake dwarfs,dwarf,110-150,"warm-light,yellow","black,brown",0,"2,3","A,B,C,D,E,F,G,H,I,K,L,M,N,O,P,Q,R,S",8,4,7,7,5,5,4,6,5,7,8,6,7,8,6,spore madness
+ice dwarfs,dwarf,100-130,"cold-light,violet","blue,gray,red",2,"2,3","A,B,C,D,E,F,G,H,I,K,1,2,3,4,5,6",7,6,9,8,4,3,5,5,4,8,7,8,9,9,9,cold bite
+north mast,mast,100-140,warm-light,"brown,amber,hazel",0,"2,3","G,H,I,K,L,M,N,O,P,Q,R",6,6,6,7,6,5,5,6,6,6,5,5,5,6,7,spring fever
+south mast,mast,90-130,cold-light,"hazel,green,blue,gray",0,"2,3","D,E,F,G,H,I,K,L,M,N,O,P,Q,R,S,T,UV",7,5,7,7,7,4,5,5,5,5,6,6,6,7,6,bonebreaker fever
+wet feet singa,singa,70-100,"cold-light,blue,turquoise","violet,gray,blue,red",0,1,"V,W,X",4,5,9,9,9,9,3,6,2,4,6,4,6,0,3,frog fever
+sakin,sakin,160-210,warm-dark,"violet,red,gray",0,4,"1,2,3,4,5,6",6,5,9,8,4,4,6,7,8,5,4,8,7,0,8,butterfly fever
+east holgen,holgen,160-200,cold-dark,"red,orange,yellow",0,"3,4","1,2,3,4,5,6",8,7,8,7,3,3,7,8,4,9,9,9,9,2,6,starflee fever
+west holgen,holgen,140-180,neutral-dark,"red,orange,yellow",2,"3,4","A,B,C,D,E,F,G,H",8,7,7,8,4,3,7,8,4,9,9,9,9,2,8,ice bites
+oger of the slopes,hizdal,250-350,"neutral-light,green","red,orange,yellow",0,"3,4","I,K,L,M,N,O",8,6,6,9,7,5,8,8,8,9,9,9,9,2,9,strangling
+north gobling,ilz,130-150,"cold-light,green","red,orange,yellow",2,"3,4","R,S,T,U,V,W,X,Y",8,7,8,8,4,3,7,8,4,9,9,9,9,5,5,yellow fever
+east goblin,ilz,120-140,"neutral-light,green","red,orange,yellow",0,"3,4","K,L,M,N,O,P",8,7,7,7,7,8,7,9,3,7,7,7,8,3,6,yellow fever
+west goblin,ilz,140-160,"warm-light,green","red,orange,yellow",0,"3,4","G,H,I,K,L,M",8,7,6,8,8,3,9,8,2,8,8,8,7,4,4,yellow fever

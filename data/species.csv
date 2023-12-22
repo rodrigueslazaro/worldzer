@@ -1,0 +1,12 @@
+species,description,alignment,size,height,lifespan,enviroment
+human,human,any,medium,150-220,150,any
+dwarf,stunt human,neutral,small,100-150,300,mountains
+mast,short human,good,small,90-140,250,plains
+singa,child human,neutral,tiny,70-100,60,swamp
+sakin,human,evil,medium,160-210,200,coast
+holgen,orc,evil,medium,140-200,80,any
+hizdal,oger,neutral,large,250-350,300,any
+ilz,goblin,neutral,small,120-160,50,any
+felcin,fox human,good,medium,130-160,100,forest
+izmiin,dolphin human,evil,medium,150-180,100,ocean
+bristen,fish human,neutral,small,120-140,50,ocean
