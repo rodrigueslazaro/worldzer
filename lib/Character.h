@@ -1,69 +1,101 @@
-#pragma once;
+#pragma once
+
 
 typedef enum {
-    human,
-    dwarf,
-    mast,
-    sakin,
-    holgen,
-    hizdal,
-    ilz,
-    felcin,
-    izmiin
-} species;
+    lawful_good,
+    lawful_neutral,
+    lawful_evil,
+    neutral_good,
+    neutral_neutral,
+    neutral_evil,
+    chaotic_good,
+    chaotic_neutral,
+    chaotic_evil
+} alignment;
 
 typedef enum {
-    very_dark,
-    dark,
-    brown,
-    light_brown,
-    white,
-    very_white,
-    blue,
-    yellow,
-    ocre,
-    red,
-    green,
-    orange
-} colors;
+    male,
+    female
+} sex;
 
 typedef struct {
+    int build;
+    bool nanism;
+    bool lost_limb;
+    string disability;
+} bone_structure;
+
+typedef struct {
+    string color;
+    int fur;
+    string texture;
+    bool alopecia;
+} hair;
+
+typedef struct {
+    string color;
+    bool vitiligo;
+} skin;
+
+typedef struct {
+    sex sex;
+    bone_structure structure;
     int height;
-    int weight;
-    int size;
-    int skin;
-    pair<colors, colors> eyes;
-    int beauty;
-} apperance;
-
-typedef stryct {
-    int age;
-    int birth;
-    int death;
-} age;
+    skin skin;
+    hair hair;
+} body;
 
 typedef struct {
-    int eye_size;
-    int chin_width;
-    int chin_forward;
-    int jaw_definition;
-    int face_width;
-    int face_height;
+    int width;
+    int definition;
+} jaw;
+
+typedef struct {
+    int width;
+    int length;
+    int bridge;
+} nose;
+
+typedef struct {
+    int width;
+    int forward;
+} chin;
+
+typedef struct {
+    bool heterochromia;
+    string left;
+    string right;
+    int size;
+    int monolid;
+} eyes;
+
+typedef struct {
+    jaw jaw;
+    chin chin;
+    eyes eyes;
+    nose nose;
+    int width;
+    int height;
+    int lips;
     int brow_forward;
-    int nose_forward;
-    int nose_bridge;
-    int nose_width;
-    int lip_size;
+    int cheeckbone_height;
 } face;
+
+typedef struct {
+    int num;
+    time_point birth;
+    time_point death;
+} age;
 
 class Character {
 public:
     Character Character();
 private:
-    int age;
-    int birth;
-    int death;
-    species species;
-    apperance apperance;
-
+    string species;
+    strig ethnicity;
+    string culture;
+    string subculture;
+    body body;
+    face face;
+    age age;
 };
