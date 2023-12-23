@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "rapidjson/document.h"
 using namespace std;
 
@@ -20,11 +21,9 @@ enum sex {
     female
 };
 
-struct bone_structure {
+struct body_structure {
     int build;
-    bool nanism;
-    bool hasdisability;
-    string disability;
+    vector<string> disability;
 };
 
 struct hair {
@@ -36,12 +35,11 @@ struct hair {
 
 struct skin {
     string color;
-    bool vitiligo;
 };
 
 struct body {
     enum sex sex;
-    struct bone_structure structure;
+    struct body_structure structure;
     int height;
     struct skin skin;
     struct hair hair;
@@ -64,7 +62,6 @@ struct chin{
 };
 
 struct eyes{
-    bool heterochromia;
     string left;
     string right;
     int size;
@@ -120,7 +117,6 @@ private:
     void setRandSubculture();
     void setAge(int alive, int age);
     void setBody();
-    void setFace();
     string species;
     string ethnicity;
     string culture;

@@ -4,9 +4,7 @@
 #include <fstream>
 #include <ctime>
 #include <cstdlib>
-#include <vector>
 #include <random>
-#include <string>
 using namespace std;
 
 Character::Character(string spc, string eth, string cul, string sub, int alive, int age) {
@@ -15,21 +13,59 @@ Character::Character(string spc, string eth, string cul, string sub, int alive, 
     setAge(alive, age);
     (eth != "") ? setEthnicity(eth) : setRandEthnicity();
     setBody();
-    setFace();
     (cul != "") ? setCulture(cul) : setRandCulture();
 }
 
 void Character::printCharacter() {
-    cout << "Species: " << species << endl;
-    cout << "Ethnicity: " << ethnicity << endl;
-    cout << "Culture: " << culture << endl;
-    cout << "Age: " << age.num << endl;
-    cout << "Sex: " << body.sex << endl;
-    cout << "Birth: " << age.birth.year << "-" << age.birth.month << "-" << age.birth.day << endl;
-    cout << "Death: " << age.death.year << "-" << age.death.month << "-" << age.death.day << endl;
-    cout << "Death age: " << age.death.year - age.birth.year << endl;
-    cout << "Hair texutre: " << body.hair.texture << endl;
-    cout << "Height: " << body.height << endl;
+    bool hashet = 0;
+    string sexes[2] = {"male", "female"};
+    cout << "<---<💪🏻>---=== BODY ===---<🦵🏻>--->" << endl
+         << "Species: " << species << endl
+         << "Sex: " << sexes[body.sex] << endl
+         << "Ethnicity: " << ethnicity << endl
+         << "Height: " << body.height << endl
+         << "Build: " << body.structure.build << endl
+         << "Skin color: " << body.skin.color << endl
+         << "Hair texutre: " << body.hair.texture << endl
+         << "Hair color: " << body.hair.color << endl
+         << "Body hair volume: " << body.hair.fur << endl;
+    if (body.structure.disability.size() > 0) {
+        cout << "Disabilities: ";
+        for (auto d : body.structure.disability)
+            cout << d << ", ";
+        cout << endl;
+    }
+    cout << "<---<👩🏻‍🦳>---=== FACE ===---<🧑🏻‍🦰>--->" << endl
+         << "Width: " << face.width << endl
+         << "Height: " << face.height << endl
+         << "Jaw width: " << face.jaw.width << endl
+         << "Jaw definition: " << face.jaw.definition << endl
+         << "Chin width: " << face.chin.width << endl
+         << "Chin forward: " << face.chin.forward << endl
+         << "Nose width: " << face.nose.width << endl
+         << "Nose length: " << face.nose.length << endl
+         << "Nose bridge: " << face.nose.bridge << endl
+         << "Lips thickness: " << face.lips << endl
+         << "Cheeckbones height: " << face.cheeckbone_height << endl
+         << "Brow forward: " << face.brow_forward << endl
+         << "Eyes size: " << face.eyes.size << endl
+         << "Eyes monolid: " << face.eyes.monolid << endl;
+        for (auto d : body.structure.disability) {
+            if (d == "heterochromia") {
+                hashet = true;
+                cout << "Left eye color: " << face.eyes.left << endl;
+                cout << "Right eye color: " << face.eyes.right << endl;
+            }
+        }
+        if (not hashet)
+            cout << "Eyes color: " << face.eyes.left << endl;
+
+    cout << "<---<❤️>---=== HISTORY ===---<💀>--->" << endl
+         << "Age in " << CURRENT_YEAR << ": " << age.num << endl
+         << "Culture: " << culture << endl
+         << "Birth: " << age.birth.year << "-" << age.birth.month << "-" << age.birth.day << endl
+         << "Death: " << age.death.year << "-" << age.death.month << "-" << age.death.day << endl
+         << "Death age: " << age.death.year - age.birth.year << endl;
 }
 
 void Character::setAge(int alive, int age) {
@@ -59,23 +95,35 @@ void Character::setAge(int alive, int age) {
 };
 
 void Character::setBody() {
+    bool hasdis = 0;
     random_device rd;
     mt19937 gen(rd());
     struct body newbody;
+    struct face newface;
     /* get ethnicity */
     for (rapidjson::SizeType i=0; i<ethnicitiesdb.Size(); i++) {
         if (ethnicitiesdb[i]["name"].GetString() == ethnicity) {
+            /* set sex */
             uniform_int_distribution<> randsex(0,1);
             newbody.sex = static_cast<enum sex>(randsex(gen));
+
+            /* set height */
             uniform_int_distribution<> randheight(static_cast<int>(ethnicitiesdb[i]["min-height"].GetFloat()),static_cast<int>(ethnicitiesdb[i]["max-height"].GetFloat()));
             newbody.height = randheight(gen);
-            uniform_int_distribution<> randgenetic(0,10000);
-            newbody.hair.alopecia = !randgenetic(gen);
-            newbody.skin.vitiligo = !randgenetic(gen);
-            newbody.structure.nanism = !randgenetic(gen);
-            newbody.structure.hasdisability = !randgenetic(gen);
-            if (newbody.structure.hasdisability) {
-                vector<string> bodyparts = {
+
+            hasdis = false;
+            for (auto d : body.structure.disability) {
+                if (d == "nanism") {
+                    hasdis = true;
+                    uniform_int_distribution<> randnansim(static_cast<int>(ethnicitiesdb[i]["min-height"].GetFloat()/2),static_cast<int>(ethnicitiesdb[i]["min-height"].GetFloat()));
+                    newbody.height = randnansim(gen);
+                }
+            }
+
+            /* set disabilities */
+            uniform_int_distribution<> randgenetics(0,5000);
+            if (not randgenetics(gen)) {
+                vector<string> disabilities = {
                     "right-hand",
                     "right-elbow",
                     "right-arm",
@@ -91,31 +139,168 @@ void Character::setBody() {
                     "partial blindness",
                     "total blindness",
                     "deafness",
+                    "alopecia",
+                    "vitiligo",
+                    "heterochromia",
+                    "nanism",
                 };
-                uniform_int_distribution<> randdis(0,14);
-                newbody.structure.disability = bodyparts[randdis(gen)];
+                uniform_int_distribution<> randdis(0,19);
+                newbody.structure.disability.push_back(disabilities[randdis(gen)]);
+                uniform_int_distribution<> randgenetics2(0,15000);
+                if (not randgenetics2(gen) and newbody.structure.disability.size() == 1) {
+                    newbody.structure.disability.push_back(newbody.structure.disability[0]);
+                    while (newbody.structure.disability[0] == newbody.structure.disability[1])
+                        newbody.structure.disability[1] = disabilities[randdis(gen)];
+                }
+                uniform_int_distribution<> randgenetics3(0,50000);
+                if (not randgenetics2(gen) and newbody.structure.disability.size() == 2) {
+                    newbody.structure.disability.push_back(newbody.structure.disability[0]);
+                    while (newbody.structure.disability[0] == newbody.structure.disability[1]
+                           or newbody.structure.disability[1] == newbody.structure.disability[2])
+                        newbody.structure.disability[2] = disabilities[randdis(gen)];
+                }
             }
+
+            /* set body hair */
             uniform_int_distribution<> pm2(-2,2);
+            uniform_int_distribution<> pm1(-1,1);
             newbody.hair.fur = static_cast<int>(ethnicitiesdb[i]["body-hair"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.jaw.width -= 1;
             (newbody.hair.fur > 9) ? newbody.hair.fur = 9:0;
             (newbody.hair.fur < 0) ? newbody.hair.fur = 0:0;
+
+            /* set body build */
+            newbody.structure.build = static_cast<int>(ethnicitiesdb[i]["bone-structure"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.jaw.width -= 1;
+            (newbody.structure.build > 9) ? newbody.structure.build = 9:0;
+            (newbody.structure.build < 0) ? newbody.structure.build = 0:0;
+
+            /* set face jaw-width */
+            newface.jaw.width = static_cast<int>(ethnicitiesdb[i]["jaw-width"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.jaw.width -= 1;
+            (newface.jaw.width > 9) ? newface.jaw.width = 9:0;
+            (newface.jaw.width < 0) ? newface.jaw.width = 0:0;
+
+            /* set face jaw-definition */
+            newface.jaw.definition = static_cast<int>(ethnicitiesdb[i]["jaw-width"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.jaw.definition -= 2;
+            (newface.jaw.definition > 9) ? newface.jaw.definition = 9:0;
+            (newface.jaw.definition < 0) ? newface.jaw.definition = 0:0;
+
+            /* set face chin-width */
+            newface.chin.width = static_cast<int>(ethnicitiesdb[i]["chin-width"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.chin.width -= 1;
+            (newface.chin.width > 9) ? newface.chin.width = 9:0;
+            (newface.chin.width < 0) ? newface.chin.width = 0:0;
+
+            /* set face chin-width */
+            newface.chin.forward = static_cast<int>(ethnicitiesdb[i]["chin-forward"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.chin.forward -= 1;
+            (newface.chin.forward > 9) ? newface.chin.forward = 9:0;
+            (newface.chin.forward < 0) ? newface.chin.forward = 0:0;
+
+            /* set cheeckbone height */
+            newface.cheeckbone_height = static_cast<int>(ethnicitiesdb[i]["cheeck-height"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.cheeckbone_height += 1;
+            (newface.cheeckbone_height > 9) ? newface.cheeckbone_height = 9:0;
+            (newface.cheeckbone_height < 0) ? newface.cheeckbone_height = 0:0;
+
+            /* set face width */
+            newface.width = static_cast<int>(ethnicitiesdb[i]["face-width"].GetFloat()) + pm1(gen);
+            (newface.width > 9) ? newface.width = 9:0;
+            (newface.width < 0) ? newface.width = 0:0;
+
+            /* set face height */
+            newface.height = static_cast<int>(ethnicitiesdb[i]["face-height"].GetFloat()) + pm1(gen);
+            (newface.height > 9) ? newface.height = 9:0;
+            (newface.height < 0) ? newface.height = 0:0;
+
+            /* set eyes size */
+            newface.eyes.size = static_cast<int>(ethnicitiesdb[i]["eye-size"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.eyes.size -= 1;
+            (newface.eyes.size > 9) ? newface.eyes.size = 9:0;
+            (newface.eyes.size < 0) ? newface.eyes.size = 0:0;
+
+            /* set eyes monolid */
+            newface.eyes.monolid = static_cast<int>(ethnicitiesdb[i]["monolid"].GetFloat());
+
+            /* set lips size */
+            newface.lips = static_cast<int>(ethnicitiesdb[i]["lips"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.lips += 1;
+            (newface.lips > 9) ? newface.lips = 9:0;
+            (newface.lips < 0) ? newface.lips = 0:0;
+
+            /* set brow forward */
+            newface.brow_forward = static_cast<int>(ethnicitiesdb[i]["brow-forward"].GetFloat()) + pm2(gen);
+            if (newbody.sex == female)
+                newface.brow_forward -= 1;
+            (newface.brow_forward > 9) ? newface.brow_forward = 9:0;
+            (newface.brow_forward < 0) ? newface.brow_forward = 0:0;
+
+            /* set nose width */
+            newface.nose.width = static_cast<int>(ethnicitiesdb[i]["nose-width"].GetFloat()) + pm2(gen);
+            (newface.nose.width > 9) ? newface.nose.width = 9:0;
+            (newface.nose.width < 0) ? newface.nose.width = 0:0;
+
+            /* set nose length */
+            newface.nose.length = static_cast<int>(ethnicitiesdb[i]["nose-length"].GetFloat()) + pm2(gen);
+            (newface.nose.length > 9) ? newface.nose.length = 9:0;
+            (newface.nose.length < 0) ? newface.nose.length = 0:0;
+
+            /* set nose bridge */
+            newface.nose.bridge = static_cast<int>(ethnicitiesdb[i]["nose-bridge"].GetFloat()) + pm2(gen);
+            (newface.nose.bridge > 9) ? newface.nose.bridge = 9:0;
+            (newface.nose.bridge < 0) ? newface.nose.bridge = 0:0;
+
+            /* set hair texture */
             rapidjson::Value::Array textures = ethnicitiesdb[i]["hair-textures"].GetArray();
             uniform_int_distribution<> randtexture(0,textures.Size()-1);
             newbody.hair.texture = textures[randtexture(gen)].GetString();
+
+            /* set hair color */
             rapidjson::Value::Array colors = ethnicitiesdb[i]["hair-colors"].GetArray();
             uniform_int_distribution<> randcolor(0,colors.Size()-1);
             newbody.hair.color = colors[randcolor(gen)].GetString();
+
+            /* set eyes color */
+            rapidjson::Value::Array eyecolors = ethnicitiesdb[i]["eyes-color"].GetArray();
+            uniform_int_distribution<> randeyecolor(0,eyecolors.Size()-1);
+
+            hasdis = false;
+            for (auto d : body.structure.disability) {
+                if (d == "heterochromia") {
+                    hasdis = true;
+                    newface.eyes.right = eyecolors[randeyecolor(gen)].GetString();
+                    newface.eyes.left = newface.eyes.right;
+                    while (newface.eyes.right == newface.eyes.left)
+                        newface.eyes.left = eyecolors[randeyecolor(gen)].GetString();
+                }
+            }
+            if (not hasdis) {
+                newface.eyes.right = eyecolors[randeyecolor(gen)].GetString();
+                newface.eyes.left = newface.eyes.right;
+            }
+
+            /* set skin color */
             rapidjson::Value::Array skin = ethnicitiesdb[i]["skin-color"].GetArray();
             uniform_int_distribution<> randskin(0,skin.Size()-1);
             uniform_int_distribution<> randtone(1,5);
-            newbody.hair.color = str(skin[randcolor(gen)].GetString()) + "-" + to_string(randtone(gen));
+            newbody.skin.color = skin[randskin(gen)].GetString();
+            newbody.skin.color += "-" + to_string(randtone(gen));
+
             body = newbody;
+            face = newface;
         }
     }
-};
-
-void Character::setFace() {
-
 };
 
 void Character::setRandEthnicity() {
