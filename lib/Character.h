@@ -98,7 +98,7 @@ struct age {
 
 class Character {
 public:
-    Character(string spc = "", string eth = "", string cul = "", string sub = "");
+    Character(string spc = "", string eth = "", string cul = "", string sub = "", int alive = 713, int age = -1);
     void getDBs();
     void setSpecies(string spc) {species = spc;};
     void setEthnicity(string eth) {species = eth;};
@@ -108,6 +108,7 @@ public:
     string getEthnicity() {return ethnicity;};
     string getCulture() {return culture;};
     string getSubculture() {return subculture;};
+    void printCharacter();
 private:
     rapidjson::Document speciesdb;
     rapidjson::Document ethnicitiesdb;
@@ -117,6 +118,9 @@ private:
     void setRandEthnicity();
     void setRandCulture();
     void setRandSubculture();
+    void setAge(int alive, int age);
+    void setBody();
+    void setFace();
     string species;
     string ethnicity;
     string culture;
