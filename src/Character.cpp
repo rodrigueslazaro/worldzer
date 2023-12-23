@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <vector>
 #include <random>
+#include <string>
 using namespace std;
 
 Character::Character(string spc, string eth, string cul, string sub, int alive, int age) {
@@ -23,9 +24,12 @@ void Character::printCharacter() {
     cout << "Ethnicity: " << ethnicity << endl;
     cout << "Culture: " << culture << endl;
     cout << "Age: " << age.num << endl;
+    cout << "Sex: " << body.sex << endl;
     cout << "Birth: " << age.birth.year << "-" << age.birth.month << "-" << age.birth.day << endl;
     cout << "Death: " << age.death.year << "-" << age.death.month << "-" << age.death.day << endl;
     cout << "Death age: " << age.death.year - age.birth.year << endl;
+    cout << "Hair texutre: " << body.hair.texture << endl;
+    cout << "Height: " << body.height << endl;
 }
 
 void Character::setAge(int alive, int age) {
@@ -55,7 +59,59 @@ void Character::setAge(int alive, int age) {
 };
 
 void Character::setBody() {
-
+    random_device rd;
+    mt19937 gen(rd());
+    struct body newbody;
+    /* get ethnicity */
+    for (rapidjson::SizeType i=0; i<ethnicitiesdb.Size(); i++) {
+        if (ethnicitiesdb[i]["name"].GetString() == ethnicity) {
+            uniform_int_distribution<> randsex(0,1);
+            newbody.sex = static_cast<enum sex>(randsex(gen));
+            uniform_int_distribution<> randheight(static_cast<int>(ethnicitiesdb[i]["min-height"].GetFloat()),static_cast<int>(ethnicitiesdb[i]["max-height"].GetFloat()));
+            newbody.height = randheight(gen);
+            uniform_int_distribution<> randgenetic(0,10000);
+            newbody.hair.alopecia = !randgenetic(gen);
+            newbody.skin.vitiligo = !randgenetic(gen);
+            newbody.structure.nanism = !randgenetic(gen);
+            newbody.structure.hasdisability = !randgenetic(gen);
+            if (newbody.structure.hasdisability) {
+                vector<string> bodyparts = {
+                    "right-hand",
+                    "right-elbow",
+                    "right-arm",
+                    "right-feet",
+                    "right-knee",
+                    "right-leg",
+                    "left-hand",
+                    "left-elbow",
+                    "left-arm",
+                    "left-feet",
+                    "left-knee",
+                    "left-leg",
+                    "partial blindness",
+                    "total blindness",
+                    "deafness",
+                };
+                uniform_int_distribution<> randdis(0,14);
+                newbody.structure.disability = bodyparts[randdis(gen)];
+            }
+            uniform_int_distribution<> pm2(-2,2);
+            newbody.hair.fur = static_cast<int>(ethnicitiesdb[i]["body-hair"].GetFloat()) + pm2(gen);
+            (newbody.hair.fur > 9) ? newbody.hair.fur = 9:0;
+            (newbody.hair.fur < 0) ? newbody.hair.fur = 0:0;
+            rapidjson::Value::Array textures = ethnicitiesdb[i]["hair-textures"].GetArray();
+            uniform_int_distribution<> randtexture(0,textures.Size()-1);
+            newbody.hair.texture = textures[randtexture(gen)].GetString();
+            rapidjson::Value::Array colors = ethnicitiesdb[i]["hair-colors"].GetArray();
+            uniform_int_distribution<> randcolor(0,colors.Size()-1);
+            newbody.hair.color = colors[randcolor(gen)].GetString();
+            rapidjson::Value::Array skin = ethnicitiesdb[i]["skin-color"].GetArray();
+            uniform_int_distribution<> randskin(0,skin.Size()-1);
+            uniform_int_distribution<> randtone(1,5);
+            newbody.hair.color = str(skin[randcolor(gen)].GetString()) + "-" + to_string(randtone(gen));
+            body = newbody;
+        }
+    }
 };
 
 void Character::setFace() {

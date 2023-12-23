@@ -23,7 +23,7 @@ enum sex {
 struct bone_structure {
     int build;
     bool nanism;
-    bool lost_limb;
+    bool hasdisability;
     string disability;
 };
 

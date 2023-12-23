@@ -1,5 +1,5 @@
 species,description,alignment,size,height,lifespan,enviroment
-human,human,any,medium,150-220,150,any
+human,human,any,medium,150-220,120,any
 dwarf,stunt human,neutral,small,100-150,300,mountains
 mast,short human,good,small,90-140,250,plains
 singa,child human,neutral,tiny,70-100,60,swamp
