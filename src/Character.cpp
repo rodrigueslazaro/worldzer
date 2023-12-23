@@ -14,11 +14,13 @@ Character::Character(string spc, string eth, string cul, string sub, int alive, 
     (eth != "") ? setEthnicity(eth) : setRandEthnicity();
     setBody();
     (cul != "") ? setCulture(cul) : setRandCulture();
+    setMindAndSkills();
 }
 
 void Character::printCharacter() {
     bool hashet = 0;
     string sexes[2] = {"male", "female"};
+    string sexuality[3] = {"straight", "bisexual", "homosexual"};
     cout << "<---<💪🏻>---=== BODY ===---<🦵🏻>--->" << endl
          << "Species: " << species << endl
          << "Sex: " << sexes[body.sex] << endl
@@ -66,6 +68,87 @@ void Character::printCharacter() {
          << "Birth: " << age.birth.year << "-" << age.birth.month << "-" << age.birth.day << endl
          << "Death: " << age.death.year << "-" << age.death.month << "-" << age.death.day << endl
          << "Death age: " << age.death.year - age.birth.year << endl;
+
+    cout << "<---<🧠>---=== BRAIN ===---<🧟>--->" << endl
+         << "Resilience: " << brain.resilience << endl
+         << "Flexibility: " << brain.flexibility << endl
+         << "Intelligence: " << brain.intelligence << endl
+         << "Sexuality: " << sexuality[brain.sexuality] << endl;
+
+    cout << "<---<💃🏻>---=== PERSONALITY ===---<🎵>--->" << endl
+         << "Extroversion: " << mind.extroversion << endl
+         << "Creativity: " << mind.creativity << endl
+         << "Rationality: " << mind.rationality << endl
+         << "Organisation: " << mind.organization << endl
+         << "Assertiveness: " << mind.assertiveness << endl;
+
+     cout << "<---<🍆>---=== VIEWS ===---<👑>--->" << endl
+         << "Authorities: " << views.authorities << endl
+         << "Individualism: " << views.individualism << endl
+         << "Tradition: " << views.tradition << endl
+         << "Hedonism: " << views.hedonism << endl
+         << "Religion: " << views.religion << endl;
+}
+
+void Character::setMindAndSkills() {
+    random_device rd;
+    mt19937 gen(rd());
+    struct brain newbrain;
+    struct mind newmind;
+    struct views newviews;
+    
+    /* set brain */
+    uniform_int_distribution<> randbrain(0, 9);
+    newbrain.resilience = randbrain(gen);
+    newbrain.flexibility = randbrain(gen);
+    newbrain.intelligence = randbrain(gen);
+    uniform_int_distribution<> sexuality(0, 99);
+    int sexdist = sexuality(gen);
+    if (sexdist < 90)
+        newbrain.sexuality = straight;
+    else if (sexdist < 95)
+        newbrain.sexuality = bisexual;
+    else
+        newbrain.sexuality = homosexual;
+    brain = newbrain;
+
+    /* set mind (personality) */
+    uniform_int_distribution<> randmind(0, 20);
+    newmind.assertiveness = randmind(gen);
+    newmind.creativity = randmind(gen);
+    newmind.extroversion = randmind(gen);
+    newmind.organization = randmind(gen);
+    newmind.rationality = randmind(gen);
+    mind = newmind;
+
+    /* set views (based on culture, and personality) */
+    for (rapidjson::SizeType i=0; i<culturesdb.Size(); i++) {
+        if (culturesdb[i]["name"].GetString() == culture) {
+            newviews.authorities = static_cast<int>(culturesdb[i]["protocols"].GetFloat())
+                                  +static_cast<int>(culturesdb[i]["centralization"].GetFloat())
+                                  +static_cast<int>(culturesdb[i]["flexibility"].GetFloat())
+                                  +static_cast<int>(culturesdb[i]["religion"].GetFloat())
+                                  +mind.organization/2;
+            newviews.individualism = static_cast<int>(culturesdb[i]["individualism"].GetFloat())
+                                    +static_cast<int>(culturesdb[i]["masculinity"].GetFloat())
+                                    +static_cast<int>(culturesdb[i]["isolation"].GetFloat())
+                                    +mind.rationality/2;
+            newviews.tradition = static_cast<int>(culturesdb[i]["individualism"].GetFloat())
+                                +static_cast<int>(culturesdb[i]["protocols"].GetFloat())
+                                +static_cast<int>(culturesdb[i]["centralization"].GetFloat())
+                                +static_cast<int>(culturesdb[i]["flexibility"].GetFloat())
+                                +static_cast<int>(culturesdb[i]["isolation"].GetFloat())
+                                +static_cast<int>(culturesdb[i]["religion"].GetFloat())
+                                +mind.organization/2;
+            newviews.hedonism = static_cast<int>(culturesdb[i]["hedonism"].GetFloat())
+                               +static_cast<int>(culturesdb[i]["masculinity"].GetFloat())
+                               +mind.extroversion/2;
+            newviews.religion = static_cast<int>(culturesdb[i]["religion"].GetFloat())
+                               +static_cast<int>(culturesdb[i]["centralization"].GetFloat())
+                               +mind.rationality/2;
+        }
+    }
+    views = newviews;
 }
 
 void Character::setAge(int alive, int age) {

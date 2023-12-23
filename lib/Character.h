@@ -93,6 +93,53 @@ struct age {
     struct calendar_date death;
 };
 
+enum sexuality {
+    straight,
+    bisexual,
+    homosexual
+};
+
+struct brain {
+    /* 0-9 */
+    int resilience;
+    int flexibility;
+    int intelligence;
+    enum sexuality sexuality;
+};
+
+struct mind {
+    /* 0-20 */
+    int extroversion;
+    int creativity;
+    int rationality;
+    int organization;
+    int assertiveness;
+};
+
+struct views {
+    /* 0-9 */
+    int authorities;
+    int individualism;
+    int tradition;
+    int hedonism;
+    int religion;
+};
+
+struct scores {
+    int strenght;
+    int dexterity;
+    int constitution;
+    int cleverness;
+    int wisdom;
+    int charisma;
+};
+
+struct skills {
+    /* 0-20 */
+    struct scores scores;
+    vector<string> languages;
+};
+
 class Character {
 public:
     Character(string spc = "", string eth = "", string cul = "", string sub = "", int alive = 713, int age = -1);
@@ -117,6 +164,7 @@ private:
     void setRandSubculture();
     void setAge(int alive, int age);
     void setBody();
+    void setMindAndSkills();
     string species;
     string ethnicity;
     string culture;
@@ -124,4 +172,10 @@ private:
     struct body body;
     struct face face;
     struct age age;
+
+    struct brain brain;
+    struct mind mind;
+    struct views views;
+
+
 };
